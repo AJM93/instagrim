@@ -30,6 +30,7 @@
                 <ul>
                     <li>User Name <input type="text" name="username"></li>
                     <li>Password <input type="password" name="password"></li>
+                    <li>Twitter <input type="text" name="twitter"></li>
                 </ul>
                 <br/>
                 <input type="submit" value="Regidter"> 

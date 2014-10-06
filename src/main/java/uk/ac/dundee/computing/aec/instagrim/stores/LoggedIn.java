@@ -18,10 +18,14 @@ public class LoggedIn {
     }
     
     public void setUsername(String name){
+        System.out.println("setting" + Username);
         this.Username=name;
+        System.out.println("setting" + name + " " + Username);
     }
     public String getUsername(){
+        System.out.println("IM WORKING"+ Username);
         return Username;
+        
     }
     public void setLogedin(){
         logedin=true;

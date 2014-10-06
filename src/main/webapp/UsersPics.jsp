@@ -16,8 +16,9 @@
     </head>
     <body>
         <header>
-        
-        <h1>InstaGrim ! </h1>
+        <% LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn"); 
+         lg.getUsername();%>
+        <h1> <% lg.getUsername(); %> </h1>
         <h2>Your world in Black and White</h2>
         </header>
         
@@ -29,7 +30,7 @@
         </nav>
  
         <article>
-            <h1>Your Pics</h1>
+            <h1>"<% lg.getUsername(); %>"</h1>
         <%
             java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
             if (lsPics == null) {

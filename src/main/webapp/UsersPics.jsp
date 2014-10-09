@@ -18,8 +18,8 @@
         <header>
         <% LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn"); 
          lg.getUsername();%>
-        <h1> <% lg.getUsername(); %> </h1>
-        <h2>Your world in Black and White</h2>
+         <h1> <% out.println(lg.getUsername()); %> </h1>
+        
         </header>
         
         <nav>
@@ -30,7 +30,7 @@
         </nav>
  
         <article>
-            <h1>"<% lg.getUsername(); %>"</h1>
+           
         <%
             java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
             if (lsPics == null) {

@@ -31,7 +31,7 @@ public final class Keyspaces {
                     + " PRIMARY KEY (picid)"
                     + ")";
             String Createuserpiclist = "CREATE TABLE if not exists instagrim.userpiclist (\n"
-                    + "picid uuid,\n"
+                    + "picid uuid,\n" 
                     + "user varchar,\n"
                     + "pic_added timestamp,\n"
                     + "PRIMARY KEY (user,pic_added)\n"

@@ -65,7 +65,7 @@ public class Login extends HttpServlet {
             lg.setFN(us.getFirstname(username));
             lg.setBio(us.getBio(username));
             //request.setAttribute("LoggedIn", lg);
-            
+            us.editBio("Test", username);
             session.setAttribute("LoggedIn", lg);
             System.out.println("Session in servlet "+session);
             RequestDispatcher rd=request.getRequestDispatcher("index.jsp");

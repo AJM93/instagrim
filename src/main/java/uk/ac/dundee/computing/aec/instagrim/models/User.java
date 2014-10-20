@@ -5,6 +5,7 @@
  */
 
 package uk.ac.dundee.computing.aec.instagrim.models;
+//package com.example.cassandra;
 
 import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.Cluster;
@@ -16,6 +17,8 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import uk.ac.dundee.computing.aec.instagrim.lib.AeSimpleSHA1;
 import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
+import com.datastax.driver.core.Host;
+import com.datastax.driver.core.Metadata;
 
 /**
  *
@@ -137,6 +140,23 @@ public class User {
            return storedbio;
        }
        }
+    
+    public void editBio(String newbio, String login) {
+        System.out.println("editbio");
+        Session session = cluster.connect("instagrim");
+        
+
+          // PreparedStatement ps = session.prepare("UPDATE userprofiles SET bio ='" + newbio + "' where login ='"+ login+"'");
+           //BoundStatement boundStatement = new BoundStatement(ps);
+          // UPDATE userprofiles SET bio ='bio' where login = 'Yogehh';
+           
+           //ResultSet rs = null;
+           //rs = session.execute( // this is where the query is executed
+             //   boundStatement.bind( // here you are binding the 'boundStatement'
+               //         newbio,login));
+           
+        
+    }
 }
 
     

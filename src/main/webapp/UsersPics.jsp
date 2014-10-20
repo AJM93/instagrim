@@ -25,8 +25,9 @@
         
         <nav>
             <ul>
+                <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
                 <li class="nav"><a href="/Instagrim/upload.jsp">Upload</a></li>
-                <li class="nav"><a href="/Instagrim/Images/majed">Sample Images</a></li>
+                <li class="nav"><a href="/Instagrim/Images/majed">All Images</a></li>
             </ul>
         </nav>
  
@@ -45,7 +46,7 @@ for (int i =0; i<lsPics.size(); i++ ){	// my code, replicates Andy's code above
 
         %>
         <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a>
-        
+        <a href="/Instagrim/Images/<%=p.getUser()%>" > <% out.println(p.getUser());%> </a>
         <a><% out.println(p.getName());  %></a></br>
         <%
 

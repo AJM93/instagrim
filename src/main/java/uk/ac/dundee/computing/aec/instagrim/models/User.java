@@ -27,7 +27,7 @@ public class User {
         
     }
     
-    public boolean RegisterUser(String username, String Password, String twitter){
+    public boolean RegisterUser(String username, String Password){
         AeSimpleSHA1 sha1handler=  new AeSimpleSHA1();
         String EncodedPassword=null;
         try {
@@ -82,6 +82,32 @@ public class User {
        public void setCluster(Cluster cluster) {
         this.cluster = cluster;
     }
+       
+       public String getFirstname(String username){
+           String storedfn = "";
+       
+           Session session = cluster.connect("instagrim");
+           PreparedStatement ps = session.prepare("select first_name from userprofiles where login =?");
+           ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        username));
+        if (rs.isExhausted()) {
+            System.out.println("No Images returned");
+            return "no first name stored";
+        } else {
+            for (Row row : rs) {
+               
+                 storedfn = row.getString("first_name");
+                
+            }
+           
+           
+           return storedfn;
+       }
+       }
+}
 
     
-}
+

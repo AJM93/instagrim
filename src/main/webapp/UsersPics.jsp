@@ -19,7 +19,7 @@
         <% LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn"); 
          lg.getUsername();%>
          <h1> <% out.println(lg.getUsername()); %> </h1>
-        
+         <h1> <% out.println(lg.getFN()); %> </h1>
         </header>
         
         <nav>

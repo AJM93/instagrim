@@ -13,6 +13,8 @@ package uk.ac.dundee.computing.aec.instagrim.stores;
 public class LoggedIn {
     boolean logedin=false;
     String Username=null;
+    String firstname = null;
+
     public void LogedIn(){
         
     }
@@ -26,6 +28,14 @@ public class LoggedIn {
         System.out.println("IM WORKING"+ Username);
         return Username;
         
+    }
+    public void setFN(String fn){
+        this.firstname = fn;
+    
+    }
+    
+    public String getFN(){
+        return firstname;
     }
     public void setLogedin(){
         logedin=true;

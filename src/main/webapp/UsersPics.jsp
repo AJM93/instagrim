@@ -18,8 +18,9 @@
         <header>
         <% LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn"); 
          lg.getUsername();%>
-         <h1> <% out.println(lg.getUsername()); %> </h1>
+         <h1> <%  out.println(lg.getUsername()); %> </h1>
          <h1> <% out.println(lg.getFN()); %> </h1>
+         <h2> "<% out.println(lg.getBio()); %>" </h2>
         </header>
         
         <nav>
@@ -38,10 +39,9 @@
         <p>No Pictures found</p>
         <%
         } else {
-            Iterator<Pic> iterator;
-            iterator = lsPics.iterator();
-            while (iterator.hasNext()) {
-                Pic p = (Pic) iterator.next();
+            
+for (int i =0; i<lsPics.size(); i++ ){	// my code, replicates Andy's code above
+             	Pic p = lsPics.get(i);
 
         %>
         <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a><br/><%

@@ -14,6 +14,8 @@ public class LoggedIn {
     boolean logedin=false;
     String Username=null;
     String firstname = null;
+        String bio = null;
+
 
     public void LogedIn(){
         
@@ -36,6 +38,15 @@ public class LoggedIn {
     
     public String getFN(){
         return firstname;
+    }
+    
+    public void setBio(String bio){
+        this.bio = bio;
+    
+    }
+    
+    public String getBio(){
+        return bio;
     }
     public void setLogedin(){
         logedin=true;

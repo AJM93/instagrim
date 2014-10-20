@@ -107,6 +107,36 @@ public class User {
            return storedfn;
        }
        }
+       
+    /**
+     *
+     * @param username
+     * @return
+     */
+    public String getBio(String username){
+           String storedbio = "";
+       
+           Session session = cluster.connect("instagrim");
+           PreparedStatement ps = session.prepare("select bio from userprofiles where login =?");
+           ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        username));
+        if (rs.isExhausted()) {
+            System.out.println("No Images returned");
+            return "no first name stored";
+        } else {
+            for (Row row : rs) {
+               
+                 storedbio = row.getString("bio");
+                
+            }
+           
+           
+           return storedbio;
+       }
+       }
 }
 
     

@@ -7,6 +7,8 @@
 <%@page import="java.util.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="uk.ac.dundee.computing.aec.instagrim.stores.*" %>
+<%@ page import="uk.ac.dundee.computing.aec.instagrim.models.*" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,7 +19,9 @@
     <body>
         <header>
         <% LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn"); 
-         lg.getUsername();%>
+         lg.getUsername();
+         PicModel pm = new PicModel();
+        %>
          <h1> <%  out.println(lg.getUsername()); %> </h1>
          <h1><a href="http://www.twitter.com/<%out.println(lg.getTwitter());%>"><% out.println(lg.getTwitter()); %></a>  </h1>
          <h2> "<% out.println(lg.getBio()); %>" </h2>
@@ -47,9 +51,12 @@ for (int i =0; i<lsPics.size(); i++ ){	// my code, replicates Andy's code above
         %>
         <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a>
         <a href="/Instagrim/Images/<%=p.getUser()%>" > <% out.println(p.getUser());%> </a>
-        <a><% out.println(p.getName());  %></a></br>
+        <a><% out.println(p.getName());  %></a>
+        <a href="/Instagrim/Images/<% //pm.deletePic(p.getName(), p.getUser());  %>" > Delete </a></br>
+        
+        
         <%
-
+        
             }
             }
         %>

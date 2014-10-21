@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+//login,addresses,bio,email,first_name,last_name,password,twitter
 
 package uk.ac.dundee.computing.aec.instagrim.stores;
 
@@ -14,6 +15,12 @@ public class LoggedIn {
     boolean logedin=false;
     String Username=null;
     String firstname = null;
+    String email = null;
+    String twitter = null;
+    String address = null;
+    String lastname= null;
+   
+   
         String bio = null;
 
 
@@ -39,7 +46,41 @@ public class LoggedIn {
     public String getFN(){
         return firstname;
     }
+    public void setLN(String ln){
+        this.lastname = ln;
     
+    }
+    
+    public String getLN(){
+        return lastname;
+    }
+    
+    public void setAddress(String address){
+        this.address = address;
+    
+    }
+    
+    public String getAddress(){
+        return address;
+    }
+    
+    public void setTwitter(String twitter){
+        this.twitter = twitter;
+    
+    }
+    
+    public String getTwitter(){
+        return this.twitter;
+    }
+    
+    public void setEmail(String email){
+        this.email = email;
+    
+    }
+    
+    public String getEmail(){
+        return this.email;
+    }
     public void setBio(String bio){
         this.bio = bio;
     

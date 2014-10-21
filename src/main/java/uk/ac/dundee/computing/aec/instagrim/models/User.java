@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+//login,addresses,bio,email,first_name,last_name,password,twitter
 package uk.ac.dundee.computing.aec.instagrim.models;
 //package com.example.cassandra;
 
@@ -138,6 +138,106 @@ public class User {
            
            
            return storedbio;
+       }
+       }
+    
+    public String getTwitter(String username){
+           String storedtwitter = "";
+       
+           Session session = cluster.connect("instagrim");
+           PreparedStatement ps = session.prepare("select twitter from userprofiles where login =?");
+           ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        username));
+        if (rs.isExhausted()) {
+            System.out.println("No Images returned");
+            return "no first name stored";
+        } else {
+            for (Row row : rs) {
+               
+                 storedtwitter = row.getString("twitter");
+                
+            }
+           
+           
+           return storedtwitter;
+       }
+       }
+    
+    public String getLastName(String username){
+           String storedlastname = "";
+       
+           Session session = cluster.connect("instagrim");
+           PreparedStatement ps = session.prepare("select last_name from userprofiles where login =?");
+           ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        username));
+        if (rs.isExhausted()) {
+            System.out.println("No Images returned");
+            return "no first name stored";
+        } else {
+            for (Row row : rs) {
+               
+                 storedlastname = row.getString("last_name");
+                
+            }
+           
+           
+           return storedlastname;
+       }
+       }
+    
+    public String getAddress(String username){
+           String storedaddress = "";
+       
+           Session session = cluster.connect("instagrim");
+           PreparedStatement ps = session.prepare("select addresses from userprofiles where login =?");
+           ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        username));
+        if (rs.isExhausted()) {
+            System.out.println("No Images returned");
+            return "no first name stored";
+        } else {
+            for (Row row : rs) {
+               
+                 storedaddress = row.getString("addresses");
+                
+            }
+           
+           
+           return storedaddress;
+       }
+       }
+    
+    public String getEmail(String username){
+           String storedemail = "";
+       
+           Session session = cluster.connect("instagrim");
+           PreparedStatement ps = session.prepare("select email from userprofiles where login =?");
+           ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        username));
+        if (rs.isExhausted()) {
+            System.out.println("No Images returned");
+            return "no first name stored";
+        } else {
+            for (Row row : rs) {
+               
+                 storedemail = row.getString("email");
+                
+            }
+           
+           
+           return storedemail;
        }
        }
     

@@ -58,12 +58,19 @@ public class Login extends HttpServlet {
         HttpSession session=request.getSession();
         System.out.println("Session in servlet "+session);
         if (isValid){
+            //login,addresses,bio,email,first_name,last_name,password,twitter
+
              LoggedIn lg= new LoggedIn();
             lg.setLogedin();
             lg.setUsername(username);
             System.out.println("set "+username);
             lg.setFN(us.getFirstname(username));
             lg.setBio(us.getBio(username));
+            lg.setLN(us.getLastName(username));
+            lg.setTwitter(us.getTwitter(username));
+            lg.setEmail(us.getEmail(username));
+            lg.setAddress(us.getAddress(username));
+            
             //request.setAttribute("LoggedIn", lg);
             us.editBio("Test", username);
             session.setAttribute("LoggedIn", lg);

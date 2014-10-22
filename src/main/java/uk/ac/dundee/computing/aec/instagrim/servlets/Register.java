@@ -55,14 +55,16 @@ public class Register extends HttpServlet {
         String bio=request.getParameter("bio");
         String fn=request.getParameter("firstname");
         String ln=request.getParameter("lastname");
-
-        //String twitter=request.getParameter("twitter");
         
+        if (""!=username && ""!=password && ""!=twitter && ""!=email  && ""!=address
+                 && ""!=bio && ""!=fn && ""!=ln){
         User us=new User();
         us.setCluster(cluster);
         us.RegisterUser(username, password, address, bio, email, fn, ln, twitter);
         
 	response.sendRedirect("/Instagrim");
+        }else{	response.sendRedirect("/Instagrim/register.jsp");  }
+
         
     }
 

@@ -51,8 +51,7 @@ for (int i =0; i<lsPics.size(); i++ ){	// my code, replicates Andy's code above
         %>
         <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a>
         <a href="/Instagrim/Images/<%=p.getUser()%>" > <% out.println(p.getUser());%> </a>
-        <a><% out.println(p.getName());  %></a>
-        <a href="/Instagrim/Images/<% //pm.deletePic(p.getName(), p.getUser());  %>" > Delete </a></br>
+        <a><% out.println(p.getName());  %></a></br>
         
         
         <%

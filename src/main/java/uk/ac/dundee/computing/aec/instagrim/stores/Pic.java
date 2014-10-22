@@ -41,6 +41,9 @@ public class Pic {
     public void setUUID(java.util.UUID UUID){
         this.UUID =UUID;
     }
+    public java.util.UUID getUUID(){
+        return this.UUID;
+    }
     public String getSUUID(){
         return UUID.toString();
     }

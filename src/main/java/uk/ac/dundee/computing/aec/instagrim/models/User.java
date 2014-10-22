@@ -29,8 +29,10 @@ public class User {
     public User(){
         
     }
+            //,addresses,bio,email,first_name,last_name,,twitter
+
     
-    public boolean RegisterUser(String username, String Password){
+    public boolean RegisterUser(String username, String Password, String address, String bio, String email, String first_name, String last_name, String twitter){
         AeSimpleSHA1 sha1handler=  new AeSimpleSHA1();
         String EncodedPassword=null;
         try {
@@ -39,13 +41,15 @@ public class User {
             System.out.println("Can't check your password");
             return false;
         }
+                //,addresses,bio,email,first_name,last_name,,twitter
+
         Session session = cluster.connect("instagrim");
-        PreparedStatement ps = session.prepare("insert into userprofiles (login,password) Values(?,?)");
+        PreparedStatement ps = session.prepare("insert into userprofiles (login,password,addresses,bio,email,first_name,last_name,twitter) Values(?,?,?,?,?,?,?,?)");
        
         BoundStatement boundStatement = new BoundStatement(ps);
         session.execute( // this is where the query is executed
                 boundStatement.bind( // here you are binding the 'boundStatement'
-                        username,EncodedPassword));
+                        username,EncodedPassword,address,bio,email,first_name,last_name,twitter));
         //We are assuming this always works.  Also a transaction would be good here !
         
         return true;

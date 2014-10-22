@@ -28,9 +28,16 @@
             <h3>Register as user</h3>
             <form method="POST"  action="Register">
                 <ul>
+
                     <li>User Name <input type="text" name="username"></li>
                     <li>Password <input type="password" name="password"></li>
                     <li>Twitter <input type="text" name="twitter"></li>
+                    <li>First name <input type="text" name="firstname"></li>
+                    <li>Last name <input type="text" name="lastname"></li>
+                    <li>Bio <input type="text" name="bio"></li>
+                    <li>Email <input type="text" name="email"></li>
+                    <li>address <input type="text" name="address"></li>
+
                 </ul>
                 <br/>
                 <input type="submit" value="Regidter"> 

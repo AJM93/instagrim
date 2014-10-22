@@ -35,6 +35,15 @@ public class Login extends HttpServlet {
         // TODO Auto-generated method stub
         cluster = CassandraHosts.getCluster();
     }
+    private void error(String error, HttpServletResponse response) throws ServletException, IOException {
+       PrintWriter out = null;
+        out = new PrintWriter(response.getOutputStream());
+        out.println(error);
+        out.println("Press the 'back' button to go back to login page");
+
+        out.close();
+        return;
+    }
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -50,6 +59,14 @@ public class Login extends HttpServlet {
         
         String username=request.getParameter("username");
         String password=request.getParameter("password");
+        
+        if(""==username){
+        error("No username provided", response);
+        }
+        if(""==password){
+        error("No password provided", response);
+        }
+        
          if (""!=username && ""!=password){
         
         

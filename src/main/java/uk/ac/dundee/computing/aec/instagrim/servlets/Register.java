@@ -57,6 +57,11 @@ public class Register extends HttpServlet {
         String ln=request.getParameter("lastname");
          User us=new User();
         us.setCluster(cluster);
+        if(""!=username){
+        if (us.userExists(username)){
+            error("user "+ username +" exists", response);
+        }
+        }
         
         if (""!=username && ""!=password && ""!=twitter && ""!=email  && ""!=address
                  && ""!=bio && ""!=fn && ""!=ln && !us.userExists(username)){
@@ -64,9 +69,21 @@ public class Register extends HttpServlet {
         us.RegisterUser(username, password, address, bio, email, fn, ln, twitter);
         
 	response.sendRedirect("/Instagrim");
-        }else{	response.sendRedirect("/Instagrim/register.jsp");  }
+        }else{	
+           error("One or more registration fields is missing data", response);
+        }
 
         
+    }
+    
+     private void error(String error, HttpServletResponse response) throws ServletException, IOException {
+       PrintWriter out = null;
+        out = new PrintWriter(response.getOutputStream());
+        out.println(error);
+        out.println("Press the 'back' button to go back to register page");
+
+        out.close();
+        return;
     }
 
     /**

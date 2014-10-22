@@ -55,11 +55,12 @@ public class Register extends HttpServlet {
         String bio=request.getParameter("bio");
         String fn=request.getParameter("firstname");
         String ln=request.getParameter("lastname");
+         User us=new User();
+        us.setCluster(cluster);
         
         if (""!=username && ""!=password && ""!=twitter && ""!=email  && ""!=address
-                 && ""!=bio && ""!=fn && ""!=ln){
-        User us=new User();
-        us.setCluster(cluster);
+                 && ""!=bio && ""!=fn && ""!=ln && !us.userExists(username)){
+       
         us.RegisterUser(username, password, address, bio, email, fn, ln, twitter);
         
 	response.sendRedirect("/Instagrim");

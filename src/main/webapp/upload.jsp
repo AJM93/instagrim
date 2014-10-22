@@ -20,14 +20,14 @@
                 <li class="nav"><a href="upload.jsp">Upload</a></li>
                                     
 
-                <li class="nav"><a href="/Instagrim/Images/majed">Sample Images</a></li>
+                <li class="nav"><a href="/Instagrim/Images/majed">All Images</a></li>
             </ul>
         </nav>
  
         <article>
             <h3>File Upload</h3>
             <form method="POST" enctype="multipart/form-data" action="Image">
-                File to upload: <input type="file" name="upfile"><br/>
+                File to upload: <input type="file" accept="image/*" name="upfile"><br/>
                 <li>Caption<input type="text" name="caption"></li>
                 <br/>
                 <input type="submit" value="Press"> to upload the file!

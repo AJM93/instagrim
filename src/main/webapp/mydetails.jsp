@@ -18,7 +18,7 @@
          <h1><% out.println(lg.getUsername());%></h1>
          <h1><% out.println(lg.getFN());%></h1>
          <h1><% out.println(lg.getLN());%></h1>
-<h1><a href="http://www.twitter.com/<%out.println(lg.getTwitter());%>"><% out.println(lg.getTwitter()); %></a>  </h1>            <h1><% out.println(lg.getBio());%></h1>
+<h1><a target="_blank" href="http://www.twitter.com/<%out.println(lg.getTwitter());%>">@<% out.println(lg.getTwitter()); %></a>  </h1>            <h1><% out.println(lg.getBio());%></h1>
 
          <h1><% out.println(lg.getAddress());%></h1>
          <h1><% out.println(lg.getEmail());%></h1>

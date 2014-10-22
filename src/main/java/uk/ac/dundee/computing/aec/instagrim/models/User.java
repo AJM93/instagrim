@@ -55,6 +55,32 @@ public class User {
         return true;
     }
     
+    public boolean userExists(String username){
+        
+        Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("select first_name from userprofiles where login =?");
+        ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        username));
+        if (rs.isExhausted()) {
+            System.out.println("No Images returned");
+            return true;
+        } else {
+            for (Row row : rs) {
+               
+                String StoredPass = row.getString("first_name");
+               
+                    return true;
+            
+        }
+   
+    
+    return false; 
+    }
+    }
+    
     public boolean IsValidUser(String username, String Password){
         AeSimpleSHA1 sha1handler=  new AeSimpleSHA1();
         String EncodedPassword=null;

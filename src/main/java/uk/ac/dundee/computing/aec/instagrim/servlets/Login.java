@@ -50,13 +50,17 @@ public class Login extends HttpServlet {
         
         String username=request.getParameter("username");
         String password=request.getParameter("password");
-         String twitter= "Null";
+         if (""!=username && ""!=password){
+        
         
         User us=new User();
         us.setCluster(cluster);
         boolean isValid=us.IsValidUser(username, password);
         HttpSession session=request.getSession();
         System.out.println("Session in servlet "+session);
+        
+        
+        
         if (isValid){
             //login,addresses,bio,email,first_name,last_name,password,twitter
 
@@ -81,6 +85,10 @@ public class Login extends HttpServlet {
         }else{
             response.sendRedirect("/Instagrim/login.jsp");
         }
+         }else{
+            response.sendRedirect("/Instagrim/login.jsp");
+
+         }
         
     }
 

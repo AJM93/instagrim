@@ -58,16 +58,16 @@ public class Register extends HttpServlet {
          User us=new User();
         // us.RegisterUser("a", "a", "a", "a", "a", "a", "a", "a");
                 //  us.RegisterUser("b", "b", "b", "c", "d", "e", "f", "g");
-
+// NOW AN ERROR WITH USER EXISTS THING 
         us.setCluster(cluster);
-        //if(""!=username){
-        //if (us.userExists(username)){
-          //  error("user "+ username +" exists", response);
-        //}
-        //}
+        if(""!=username){
+        if (us.userExists(username)){
+            error("user "+ username +" exists", response);
+        }
+        }
         
         if (""!=username && ""!=password && ""!=twitter && ""!=email  && ""!=address
-                 && ""!=bio && ""!=fn && ""!=ln ){
+                 && ""!=bio && ""!=fn && ""!=ln && !us.userExists(username)){
        
         us.RegisterUser(username, password, address, bio, email, fn, ln, twitter);
         

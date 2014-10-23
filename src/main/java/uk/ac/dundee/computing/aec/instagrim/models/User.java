@@ -66,7 +66,7 @@ public class User {
                         username));
         if (rs.isExhausted()) {
             System.out.println("No Images returned");
-            return true;
+            return false;
         } else {
             for (Row row : rs) {
                

@@ -56,15 +56,18 @@ public class Register extends HttpServlet {
         String fn=request.getParameter("firstname");
         String ln=request.getParameter("lastname");
          User us=new User();
+        // us.RegisterUser("a", "a", "a", "a", "a", "a", "a", "a");
+                //  us.RegisterUser("b", "b", "b", "c", "d", "e", "f", "g");
+
         us.setCluster(cluster);
-        if(""!=username){
-        if (us.userExists(username)){
-            error("user "+ username +" exists", response);
-        }
-        }
+        //if(""!=username){
+        //if (us.userExists(username)){
+          //  error("user "+ username +" exists", response);
+        //}
+        //}
         
         if (""!=username && ""!=password && ""!=twitter && ""!=email  && ""!=address
-                 && ""!=bio && ""!=fn && ""!=ln && !us.userExists(username)){
+                 && ""!=bio && ""!=fn && ""!=ln ){
        
         us.RegisterUser(username, password, address, bio, email, fn, ln, twitter);
         

@@ -271,19 +271,94 @@ public class User {
        }
        }
     
-    public void editBio(String newbio, String login) {
+    public void editBio(String newdata, String login) {
         System.out.println("editbio");
         Session session = cluster.connect("instagrim");
         
 
-          // PreparedStatement ps = session.prepare("UPDATE userprofiles SET bio ='" + newbio + "' where login ='"+ login+"'");
-           //BoundStatement boundStatement = new BoundStatement(ps);
-          // UPDATE userprofiles SET bio ='bio' where login = 'Yogehh';
+           PreparedStatement ps = session.prepare("UPDATE userprofiles SET bio =? where login =?");
+           BoundStatement boundStatement = new BoundStatement(ps);
            
-           //ResultSet rs = null;
-           //rs = session.execute( // this is where the query is executed
-             //   boundStatement.bind( // here you are binding the 'boundStatement'
-               //         newbio,login));
+           ResultSet rs = null;
+           rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        newdata,login));
+           
+        
+    }
+    public void editLN(String newdata, String login) {
+        System.out.println("editbio");
+        Session session = cluster.connect("instagrim");
+        
+
+           PreparedStatement ps = session.prepare("UPDATE userprofiles SET last_name =? where login =?");
+           BoundStatement boundStatement = new BoundStatement(ps);
+           
+           ResultSet rs = null;
+           rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        newdata,login));
+           
+        
+    }
+    public void editFN(String newdata, String login) {
+        System.out.println("editbio");
+        Session session = cluster.connect("instagrim");
+        
+
+           PreparedStatement ps = session.prepare("UPDATE userprofiles SET first_name =? where login =?");
+           BoundStatement boundStatement = new BoundStatement(ps);
+           
+           ResultSet rs = null;
+           rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        newdata,login));
+           
+        
+    }
+    public void editTwitter(String newdata, String login) {
+        System.out.println("editbio");
+        Session session = cluster.connect("instagrim");
+        
+
+           PreparedStatement ps = session.prepare("UPDATE userprofiles SET twitter =? where login =?");
+           BoundStatement boundStatement = new BoundStatement(ps);
+           
+           ResultSet rs = null;
+           rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        newdata,login));
+           
+        
+    }
+    public void editAddress(String newdata, String login) {
+        System.out.println("editbio");
+        Session session = cluster.connect("instagrim");
+        
+
+           PreparedStatement ps = session.prepare("UPDATE userprofiles SET addresses =? where login =?");
+           BoundStatement boundStatement = new BoundStatement(ps);
+           
+           ResultSet rs = null;
+           rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        newdata,login));
+           
+        
+    }
+    
+    public void editEmail(String newdata, String login) {
+        System.out.println("editbio");
+        Session session = cluster.connect("instagrim");
+        
+
+           PreparedStatement ps = session.prepare("UPDATE userprofiles SET email =? where login =?");
+           BoundStatement boundStatement = new BoundStatement(ps);
+           
+           ResultSet rs = null;
+           rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        newdata,login));
            
         
     }

@@ -36,7 +36,10 @@ import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
     "/Image/*",
     "/Thumb/*",
     "/Images",
-    "/Images/*"
+    "/Images/*",
+    "/Delete",
+    "/Delete/",
+    "/Delete/*"
 })
 @MultipartConfig
 
@@ -57,6 +60,7 @@ public class Image extends HttpServlet {
         CommandsMap.put("Image", 1);
         CommandsMap.put("Images", 2);
         CommandsMap.put("Thumb", 3);
+        CommandsMap.put("Delete", 4);
 
     }
 
@@ -89,9 +93,27 @@ public class Image extends HttpServlet {
             case 3:
                 DisplayImage(Convertors.DISPLAY_THUMB,args[2],  response);
                 break;
+            case 4:
+                //delete image zzz 
+                deleteImage(args[2], response, request);
+                break;
+                 
             default:
                 error("Bad Operator", response);
         }
+    }
+    
+    private void deleteImage(String uuidstring, HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
+    String user = "";
+    PicModel pm = new PicModel();
+    pm.setCluster(cluster);
+    HttpSession session = request.getSession();
+    LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+    user=lg.getUsername();
+     pm.deletePic(java.util.UUID.fromString(uuidstring), user);
+     response.sendRedirect("/Instagrim");
+    //pm.getDate(java.util.UUID.fromString(uuidstring));
+            
     }
 
     private void DisplayImageList(String User, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

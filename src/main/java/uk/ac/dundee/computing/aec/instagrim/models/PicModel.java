@@ -126,6 +126,7 @@ public class PicModel {
     }
     
    public static BufferedImage createProcessed(BufferedImage img) {
+
         int Width=img.getWidth()-1;
         img = resize(img, Method.SPEED, Width, OP_ANTIALIAS, OP_GRAYSCALE);
         return pad(img, 4);
@@ -198,6 +199,40 @@ public class PicModel {
             }
         }
         return Pics;
+    }
+    public Date getDate(java.util.UUID picid){
+        Date added = new Date();
+        Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("select interaction_time from pics where picid=?");
+        ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        picid));
+        if (rs.isExhausted()) {
+            System.out.println("error");
+            return null;
+        } else {
+            for (Row row : rs) {
+                added=row.getDate("interaction_time");
+
+            }
+        }
+
+        return added;
+    }
+    
+    public void deletePic(java.util.UUID picid, String user){
+    Date date = getDate(picid);
+    Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("delete from userpiclist where user = ? and pic_added = ?");
+        ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        user, date));
+        
+        
     }
     
     

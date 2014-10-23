@@ -34,6 +34,8 @@
                     <li><a  href="/Instagrim/Logout">Logout</a></li>
                                     <li class="nav"><a href="/Instagrim/Images/majed">All Images</a></li>
                                     <li class="nav"><a href="/Instagrim/mydetails.jsp">My details</a></li>
+                                    <li class="nav"><a href="/Instagrim/editdetails.jsp">Edit details</a></li>
+                                    
 
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
                     <%}

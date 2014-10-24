@@ -19,6 +19,7 @@ public class LoggedIn {
     String twitter = null;
     String address = null;
     String lastname= null;
+    String picid = null;
    
    
         String bio = null;
@@ -36,6 +37,14 @@ public class LoggedIn {
     public String getUsername(){
         System.out.println("IM WORKING"+ Username);
         return Username;
+        
+    }
+    public void setPP(String picid){
+        System.out.println("setting" + Username);
+        this.picid=picid;
+    }
+    public String getPP(){
+        return picid;
         
     }
     public void setFN(String fn){

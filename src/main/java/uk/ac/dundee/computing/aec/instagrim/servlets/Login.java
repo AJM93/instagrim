@@ -91,6 +91,7 @@ public class Login extends HttpServlet {
             lg.setTwitter(us.getTwitter(username));
             lg.setEmail(us.getEmail(username));
             lg.setAddress(us.getAddress(username));
+            lg.setPP(us.getPP(username));
             
             //request.setAttribute("LoggedIn", lg);
             session.setAttribute("LoggedIn", lg);

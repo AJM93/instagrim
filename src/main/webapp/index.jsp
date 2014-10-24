@@ -6,7 +6,10 @@
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="uk.ac.dundee.computing.aec.instagrim.stores.*" %>
+<%@ page import="uk.ac.dundee.computing.aec.instagrim.stores.*" %>
+<%@ page import="uk.ac.dundee.computing.aec.instagrim.models.*" %>
+<%@ page import = "uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts" %>
+<%@ page import = "com.datastax.driver.core.Cluster" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,15 +25,26 @@
         <nav>
             <ul>
 
-               
-                <li><a href="upload.jsp">Upload</a></li>
+
+                
                     <%
                         
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                        Cluster cluster;
+                        User us = new User();
+                        cluster = CassandraHosts.getCluster();
+                        us.setCluster(cluster);
+
                         if (lg != null) {
                             String UserName = lg.getUsername();
                             if (lg.getlogedin()) {
+                                                        lg.setPP(us.getPP(lg.getUsername()));
+
+                                
                     %>
+                                <a href="/Instagrim/Image/<%=lg.getPP()%>" ><img src="/Instagrim/Thumb/<%=lg.getPP()%>"></a>
+                <li><a href="upload.jsp">Upload</a></li>
+
                     <li><a  href="/Instagrim/Logout">Logout</a></li>
                                     <li class="nav"><a href="/Instagrim/Images/majed">All Images</a></li>
                                     <li class="nav"><a href="/Instagrim/mydetails.jsp">My details</a></li>

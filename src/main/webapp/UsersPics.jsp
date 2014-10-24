@@ -8,6 +8,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="uk.ac.dundee.computing.aec.instagrim.stores.*" %>
 <%@ page import="uk.ac.dundee.computing.aec.instagrim.models.*" %>
+<%@ page import = "uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts" %>
+<%@ page import = "com.datastax.driver.core.Cluster" %>
 
 <!DOCTYPE html>
 <html>
@@ -21,8 +23,17 @@
         <% LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn"); 
          lg.getUsername();
          PicModel pm = new PicModel();
+         Cluster cluster;
+                        User us = new User();
+                        cluster = CassandraHosts.getCluster();
+                        us.setCluster(cluster);
+                                 lg.setPP(us.getPP(lg.getUsername()));
+
         %>
-         <h1> <%  out.println(lg.getUsername()); %> </h1>
+         <h1> <%  out.println(lg.getUsername()); %> </h1>                  <a href="/Instagrim/Image/<%=lg.getPP()%>" ><img src="/Instagrim/Thumb/<%=lg.getPP()%>"></a>
+
+
+
          <h1><a target="_blank" href="http://www.twitter.com/<%out.println(lg.getTwitter());%>">@<% out.println(lg.getTwitter()); %></a>  </h1>
          <h2> "<% out.println(lg.getBio()); %>" </h2>
         </header>
@@ -52,7 +63,10 @@ for (int i =0; i<lsPics.size(); i++ ){
         <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a>
         <a href="/Instagrim/Images/<%=p.getUser()%>" > <% out.println(p.getUser());%> </a>
         <a><% out.println(p.getName());  %></a>
-        <a href="/Instagrim/Delete/<%=p.getSUUID()%>" > Delete </a></br>
+        
+        <a href="/Instagrim/Delete/<%=p.getSUUID()%>" > Delete </a>
+        <a href="/Instagrim/UpdateAvatar/<%=p.getSUUID()%>" > Update Avatar </a></br>
+        
         
         
         <%

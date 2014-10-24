@@ -34,12 +34,15 @@ import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
 @WebServlet(urlPatterns = {
     "/Image",
     "/Image/*",
-    "/Thumb/*",
+    "/Thumb/*", 
     "/Images",
     "/Images/*",
     "/Delete",
     "/Delete/",
-    "/Delete/*"
+    "/Delete/*",
+    "/UpdateAvatar",
+    "/UpdateAvatar/",
+    "/UpdateAvatar/*"
 })
 @MultipartConfig
 
@@ -61,6 +64,8 @@ public class Image extends HttpServlet {
         CommandsMap.put("Images", 2);
         CommandsMap.put("Thumb", 3);
         CommandsMap.put("Delete", 4);
+        CommandsMap.put("UpdateAvatar", 5);
+
 
     }
 
@@ -97,10 +102,28 @@ public class Image extends HttpServlet {
                 //delete image zzz 
                 deleteImage(args[2], response, request);
                 break;
+                case 5:
+                //delete image zzz 
+                updateAv(args[2], response, request);
+                //error(args[2], response);
+                break;
                  
             default:
                 error("Bad Operator", response);
         }
+    }
+    
+    private void updateAv(String uuidstring, HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
+        String user = "";
+    PicModel pm = new PicModel();
+    pm.setCluster(cluster);
+    HttpSession session = request.getSession();
+    LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+    user=lg.getUsername();
+    pm.UpdateAvatar(uuidstring, user);
+     response.sendRedirect("/Instagrim");
+
+   
     }
     
     private void deleteImage(String uuidstring, HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {

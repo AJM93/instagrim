@@ -220,9 +220,8 @@ public class User {
            return storedlastname;
        }
        }
-    
     public String getAddress(String username){
-           String storedaddress = "";
+           String storedlastname = "";
        
            Session session = cluster.connect("instagrim");
            PreparedStatement ps = session.prepare("select addresses from userprofiles where login =?");
@@ -237,12 +236,37 @@ public class User {
         } else {
             for (Row row : rs) {
                
-                 storedaddress = row.getString("addresses");
+                 storedlastname = row.getString("addresses");
                 
             }
            
            
-           return storedaddress;
+           return storedlastname;
+       }
+       }
+    
+    public String getPP(String picid){
+           String storedpicid = "";
+       
+           Session session = cluster.connect("instagrim");
+           PreparedStatement ps = session.prepare("select profilepic from userprofiles where login =?");
+           ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        picid));
+        if (rs.isExhausted()) {
+            System.out.println("No Images returned");
+            return "no first name stored";
+        } else {
+            for (Row row : rs) {
+               
+                 storedpicid = row.getString("profilepic");
+                
+            }
+           
+           
+           return storedpicid;
        }
        }
     

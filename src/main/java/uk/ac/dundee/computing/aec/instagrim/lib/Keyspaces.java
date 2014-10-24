@@ -51,7 +51,7 @@ public final class Keyspaces {
                     + "      addresses text,\n"
                     + "      bio text,\n"
                     + "      twitter text,\n"
-                    + "      profilepic uuid\n"
+                    + "      profilepic text\n"
 
                     + "  );";
             Session session = c.connect();

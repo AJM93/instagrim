@@ -232,7 +232,8 @@ public class PicModel {
                 boundStatement.bind( // here you are binding the 'boundStatement'
                         picid, user));
     }
-    
+    //
+    //taken from http://stackoverflow.com/questions/363681/generating-random-integers-in-a-range-with-java
     public static int randInt(int min, int max) {
 
     // NOTE: Usually this should be a field rather than a method

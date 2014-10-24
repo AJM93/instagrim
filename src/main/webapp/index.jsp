@@ -31,10 +31,13 @@
                         PicModel pm = new PicModel();
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
                         Cluster cluster;
+                                                Cluster cluster2;
+
                         User us = new User();
                         cluster = CassandraHosts.getCluster();
+                        cluster2 = CassandraHosts.getCluster();
                         us.setCluster(cluster);
-                        pm.setCluster(cluster);
+                        pm.setCluster(cluster2);
 
                         if (lg != null) {
                             String UserName = lg.getUsername();
@@ -43,7 +46,9 @@
 
                                 
                     %>
+                    Random Pic</br>
                                 <a href="/Instagrim/Image/<%=pm.getRandom()%>" ><img src="/Instagrim/Thumb/<%=pm.getRandom()%>"></a>
+                                
                 <li><a href="upload.jsp">Upload</a></li>
 
                     <li><a  href="/Instagrim/Logout">Logout</a></li>

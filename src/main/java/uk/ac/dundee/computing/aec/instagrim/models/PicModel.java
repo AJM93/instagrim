@@ -22,7 +22,7 @@ import com.datastax.driver.core.utils.Bytes;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-
+import java.util.*;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -231,6 +231,43 @@ public class PicModel {
         rs = session.execute( // this is where the query is executed
                 boundStatement.bind( // here you are binding the 'boundStatement'
                         picid, user));
+    }
+    
+    public static int randInt(int min, int max) {
+
+    // NOTE: Usually this should be a field rather than a method
+    // variable so that it is not re-seeded every call.
+    Random rand = new Random();
+
+    // nextInt is normally exclusive of the top value,
+    // so add 1 to make it inclusive
+    int randomNum = rand.nextInt((max - min) + 1) + min;
+
+    return randomNum;
+}
+    //does not work yet
+    public String getRandom(){
+         java.util.LinkedList<String> Pics = new java.util.LinkedList<>();
+
+        String picid = "";
+        Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("select picid from pics");
+        ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        ));
+        if (rs.isExhausted()) {
+            System.out.println("error");
+            return null;
+        } else {
+            for (Row row : rs) {
+                Pics.add(row.getUUID("picid").toString());
+
+            }
+        }
+        
+        return Pics.get(randInt(0,Pics.size()-1));
     }
     
     public void deletePic(java.util.UUID picid, String user){

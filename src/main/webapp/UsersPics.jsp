@@ -70,11 +70,15 @@ for (int i =0; i<lsPics.size(); i++ ){
         
         <a href="/Instagrim/Delete/<%=p.getSUUID()%>" > Delete </a>
         <a href="/Instagrim/UpdateAvatar/<%=p.getSUUID()%>" > Update Avatar </a></br>
-        <a> <% out.println(comments.get(0)); %> </a></br>
+       <% for(int j=0; j<comments.size();j++)
+       {%>
+        <a> <% out.println(comments.get(j)); %> </a></br>
+        
         
         
         
         <%
+       }
         
             }
             }

@@ -59,7 +59,7 @@ public final class Keyspaces {
                      + "     body text,\n"
                     + "      picid text,\n"
                     + "         user text,\n"
-                     + "PRIMARY KEY (commentid, picid)\n"
+                     + "PRIMARY KEY (commentid, picid,body)\n"
                     
 
                     + "  );";            

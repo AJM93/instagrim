@@ -24,8 +24,10 @@
          lg.getUsername();
          PicModel pm = new PicModel();
          Cluster cluster;
+
                         User us = new User();
                         cluster = CassandraHosts.getCluster();
+                          pm.setCluster(cluster);
                         us.setCluster(cluster);
                                  lg.setPP(us.getPP(lg.getUsername()));
 
@@ -50,6 +52,7 @@
            
         <%
             java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
+            java.util.LinkedList<String> comments = new java.util.LinkedList<>();
             if (lsPics == null) {
         %>
         <p>No Pictures found</p>
@@ -58,7 +61,8 @@
             
 for (int i =0; i<lsPics.size(); i++ ){ 
              	Pic p = lsPics.get(i);
-
+                comments=pm.getComments(p.getSUUID());
+                
         %>
         <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a>
         <a href="/Instagrim/Images/<%=p.getUser()%>" > <% out.println(p.getUser());%> </a>
@@ -66,6 +70,7 @@ for (int i =0; i<lsPics.size(); i++ ){
         
         <a href="/Instagrim/Delete/<%=p.getSUUID()%>" > Delete </a>
         <a href="/Instagrim/UpdateAvatar/<%=p.getSUUID()%>" > Update Avatar </a></br>
+        <a> <% out.println(comments.get(0)); %> </a></br>
         
         
         

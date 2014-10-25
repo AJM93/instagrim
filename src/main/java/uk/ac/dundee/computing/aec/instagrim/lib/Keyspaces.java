@@ -55,10 +55,11 @@ public final class Keyspaces {
 
                     + "  );";
             String CreateComments = "CREATE TABLE if not exists instagrim.comments (\n"
-                    + "      commentid UUID PRIMARY KEY,\n"
+                    + "      commentid UUID,\n"
                      + "     body text,\n"
                     + "      picid text,\n"
-                    + "user text"
+                    + "         user text,\n"
+                     + "PRIMARY KEY (commentid, picid)\n"
                     
 
                     + "  );";            

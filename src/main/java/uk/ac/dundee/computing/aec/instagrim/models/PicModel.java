@@ -78,7 +78,7 @@ public class PicModel {
             Date DateAdded = new Date();
             session.execute(bsInsertPic.bind(picid, buffer, thumbbuf,processedbuf, user, DateAdded, length,thumblength,processedlength, type, name));
             session.execute(bsInsertPicToUser.bind(picid, user, DateAdded, caption));
-
+             insertComment(user,"test comment",picid.toString());
             session.close();
 
         } catch (IOException ex) {
@@ -218,7 +218,7 @@ public class PicModel {
     public java.util.LinkedList<String> getComments(String picid){
         java.util.LinkedList<String> comments = new java.util.LinkedList<>();
         Session session = cluster.connect("instagrim");
-        PreparedStatement ps = session.prepare("select user,body from comments where picid=?");
+        PreparedStatement ps = session.prepare("select user,body from comments where picid=? ALLOW FILTERING");
         BoundStatement boundStatement = new BoundStatement(ps);
         ResultSet rs = null;
         rs = session.execute( // this is where the query is executed

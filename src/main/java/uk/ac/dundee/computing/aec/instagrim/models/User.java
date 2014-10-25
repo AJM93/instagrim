@@ -326,7 +326,6 @@ public class User {
         
     }
     public void editFN(String newdata, String login) {
-        System.out.println("editbio");
         Session session = cluster.connect("instagrim");
         
 

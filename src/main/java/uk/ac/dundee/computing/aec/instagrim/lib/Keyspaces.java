@@ -54,6 +54,14 @@ public final class Keyspaces {
                     + "      profilepic text\n"
 
                     + "  );";
+            String CreateComments = "CREATE TABLE if not exists instagrim.comments (\n"
+                    + "      commentid UUID PRIMARY KEY,\n"
+                     + "     body text,\n"
+                    + "      picid text,\n"
+                    + "user text"
+                    
+
+                    + "  );";            
             Session session = c.connect();
             try {
                 PreparedStatement statement = session
@@ -94,6 +102,12 @@ public final class Keyspaces {
             System.out.println("" + CreateUserProfile);
             try {
                 SimpleStatement cqlQuery = new SimpleStatement(CreateUserProfile);
+                session.execute(cqlQuery);
+            } catch (Exception et) {
+                System.out.println("Can't create Address Profile " + et);
+            }
+            try {
+                SimpleStatement cqlQuery = new SimpleStatement(CreateComments);
                 session.execute(cqlQuery);
             } catch (Exception et) {
                 System.out.println("Can't create Address Profile " + et);

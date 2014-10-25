@@ -57,7 +57,6 @@ public class PicModel {
             ByteBuffer buffer = ByteBuffer.wrap(b);
             int length = b.length;
             java.util.UUID picid = convertor.getTimeUUID();
-            
             //The following is a quick and dirty way of doing this, will fill the disk quickly !
             Boolean success = (new File("/var/tmp/instagrim/")).mkdirs();
             FileOutputStream output = new FileOutputStream(new File("/var/tmp/instagrim/" + picid));
@@ -79,6 +78,7 @@ public class PicModel {
             Date DateAdded = new Date();
             session.execute(bsInsertPic.bind(picid, buffer, thumbbuf,processedbuf, user, DateAdded, length,thumblength,processedlength, type, name));
             session.execute(bsInsertPicToUser.bind(picid, user, DateAdded, caption));
+
             session.close();
 
         } catch (IOException ex) {
@@ -173,6 +173,7 @@ public class PicModel {
             }
         }
         return Pics;
+       
         
     }public java.util.LinkedList<Pic> getPics(String User) {
         java.util.LinkedList<Pic> Pics = new java.util.LinkedList<>();
@@ -200,6 +201,45 @@ public class PicModel {
         }
         return Pics;
     }
+    
+    public void insertComment(String user, String body, String picid){
+        Convertors convertor = new Convertors();
+
+        java.util.UUID commentID = convertor.getTimeUUID();
+        Session session = cluster.connect("instagrim");
+
+        
+        PreparedStatement insertcom = session.prepare("insert into comments ( commentid, body,picid,user) values(?,?,?,?)");
+        BoundStatement bsinsertcom = new BoundStatement(insertcom);
+        session.execute(bsinsertcom.bind(commentID,body,picid,user));
+        
+    }
+    
+    public java.util.LinkedList<String> getComments(String picid){
+        java.util.LinkedList<String> comments = new java.util.LinkedList<>();
+        Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("select user,body from comments where picid=?");
+        BoundStatement boundStatement = new BoundStatement(ps);
+        ResultSet rs = null;
+        rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        picid));
+        if (rs.isExhausted()) {
+            System.out.println("No Images returned");
+            return null;
+        } else {
+            for (Row row : rs) {
+                
+                comments.add(row.getString("user")+": "+row.getString("body"));
+                
+
+            }
+        }
+        
+        return comments;
+    }
+    
+    
     public Date getDate(java.util.UUID picid){
         Date added = new Date();
         Session session = cluster.connect("instagrim");

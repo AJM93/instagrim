@@ -42,7 +42,10 @@ import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
     "/Delete/*",
     "/UpdateAvatar",
     "/UpdateAvatar/",
-    "/UpdateAvatar/*"
+    "/UpdateAvatar/*",
+        "/Discover",
+    "/Discover/",
+    "/Discover/*"
 })
 @MultipartConfig
 
@@ -65,6 +68,8 @@ public class Image extends HttpServlet {
         CommandsMap.put("Thumb", 3);
         CommandsMap.put("Delete", 4);
         CommandsMap.put("UpdateAvatar", 5);
+        CommandsMap.put("Discover", 6);
+
 
 
     }
@@ -107,6 +112,9 @@ public class Image extends HttpServlet {
                 updateAv(args[2], response, request);
                 //error(args[2], response);
                 break;
+                    case 6:
+                Discover(args[2], request, response);
+                break;
                  
             default:
                 error("Bad Operator", response);
@@ -144,6 +152,16 @@ public class Image extends HttpServlet {
         tm.setCluster(cluster);
         java.util.LinkedList<Pic> lsPics = tm.getPicsForUser(User);
         RequestDispatcher rd = request.getRequestDispatcher("/UsersPics.jsp");
+        request.setAttribute("Pics", lsPics);
+        rd.forward(request, response);
+
+    }
+    
+    private void Discover(String User, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PicModel tm = new PicModel();
+        tm.setCluster(cluster);
+        java.util.LinkedList<Pic> lsPics = tm.getPicsForUser(User);
+        RequestDispatcher rd = request.getRequestDispatcher("/Discover.jsp");
         request.setAttribute("Pics", lsPics);
         rd.forward(request, response);
 

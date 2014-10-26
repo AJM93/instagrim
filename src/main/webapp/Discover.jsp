@@ -82,13 +82,13 @@ for (int i =0; i<lsPics.size(); i++ ){
         
         
          
-            <form name="input" action="/Instagrim/Comment" method="post">
+            <form name="input" action="/Instagrim/Follow" method="post">
                 <input type="text" name="user" value="<%=lg.getUsername()%>" hidden>
-                <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden>
-                <input type="text" name="comment">
+                <input type="text" name="user1" value="<%=p.getUser()%>" hidden>
+               
 
 
-                <input type="submit" value="Comment">
+                <input type="submit" value="Follow">
             </form>
                 <a>Comments:</a></br>
        <% 

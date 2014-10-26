@@ -48,7 +48,7 @@
             </ul>
         </nav>
  
-        <article>
+        <article>  
            
         <%
             java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
@@ -70,12 +70,19 @@ for (int i =0; i<lsPics.size(); i++ ){
         %>
         <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a>
         <a><% out.println(p.getName());  %></a>
+        <% if(lg.getUsername().equals(p.getUser())){ %>
+        <form action="/Instagrim/Delete/<%=p.getSUUID()%>">
+    <input type="submit" value="Delete" >
+        </form>
+       <!-- <a href="/Instagrim/Delete/<%=p.getSUUID()%>" > Delete </a> -->
+        <% } %>
+        <form action="/Instagrim/UpdateAvatar/<%=p.getSUUID()%>">
+    <input type="submit" value="Update Avatar" >
+        </form>
         
-        <a href="/Instagrim/Delete/<%=p.getSUUID()%>" > Delete </a>
-        <a href="/Instagrim/UpdateAvatar/<%=p.getSUUID()%>" > Update Avatar </a></br>
-        </br>
         <IMG HEIGHT=50 WIDTH=50 SRC="/Instagrim/Image/<%=us.getPP(p.getUser())%>" >
         <a href="/Instagrim/Images/<%=p.getUser()%>" > <% out.println(p.getUser());%> </a>
+        <a target="_blank" href="http://www.twitter.com/<%out.println(us.getTwitter(p.getUser()));%>">     @<% out.println("    " +us.getTwitter(p.getUser())); %></a>
         </br>
         <a><% out.println("''"+us.getBio(p.getUser())+"''"); %></a>
         </br>

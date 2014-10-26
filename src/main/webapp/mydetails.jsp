@@ -42,4 +42,9 @@
          <h1><% out.println(lg.getEmail());%></h1>
        
     </body>
+    <footer>
+            <ul>
+                <li class="footer"><a href="/Instagrim">Home</a></li>
+            </ul>
+        </footer>
 </html>

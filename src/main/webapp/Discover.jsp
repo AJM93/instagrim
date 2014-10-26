@@ -71,7 +71,6 @@ for (int i =0; i<lsPics.size(); i++ ){
         <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a>
         <a><% out.println(p.getName());  %></a>
         
-        <a href="/Instagrim/Delete/<%=p.getSUUID()%>" > Delete </a>
         <a href="/Instagrim/UpdateAvatar/<%=p.getSUUID()%>" > Update Avatar </a></br>
         </br>
         <IMG HEIGHT=50 WIDTH=50 SRC="/Instagrim/Image/<%=us.getPP(p.getUser())%>" >

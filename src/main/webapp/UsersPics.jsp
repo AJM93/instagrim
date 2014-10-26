@@ -79,7 +79,8 @@ for (int i =0; i<lsPics.size(); i++ ){
                 <input type="submit" value="Comment">
             </form>
             </br>
-       <% for(int j=0; j<comments.size();j++)
+       <% if (comments!=null) { 
+       for(int j=0; j<comments.size();j++)
        {%>
         <a> <% out.println(comments.get(j)); %> </a></br>
         
@@ -89,6 +90,7 @@ for (int i =0; i<lsPics.size(); i++ ){
         <%
        }
         
+            }
             }
             }
         %>

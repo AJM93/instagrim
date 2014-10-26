@@ -81,6 +81,45 @@ public class User {
     }
     }
     
+    public boolean doesFollow(String user1,String user2){
+        if(user1.equals(user2)){
+            return true;
+        }
+        java.util.LinkedList<String> follows = new java.util.LinkedList<>();
+        Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("select user1 from follow where user=?");
+        ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        user1));
+        if (rs.isExhausted()) {
+            System.out.println("No Images returned");
+            return false;
+        } else {
+            for (Row row : rs) {
+               
+                 follows.add(row.getString("user1"));
+               
+                    
+        
+    }
+            
+            for(int i = 0; i<follows.size(); i++){
+                System.out.println("looping");
+                System.out.println(user1+user2);
+                if(user2.equals(follows.get(i))){
+                    System.out.println(user1 +"  "+user2);
+                return true;
+                }
+            
+            
+        }
+        return false;
+    
+    }
+    }
+    
     public void followUser(String user1, String user2){
         Session session = cluster.connect("instagrim");
         PreparedStatement ps = session.prepare("insert into follow (user,user1) Values(?,?)");

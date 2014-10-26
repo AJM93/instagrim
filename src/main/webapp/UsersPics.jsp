@@ -65,6 +65,7 @@ for (int i =0; i<lsPics.size(); i++ ){
              	Pic p = lsPics.get(i);
                 comments=pm.getComments(p.getSUUID());
                 users=pm.getUsers(p.getSUUID());
+                if(us.doesFollow(lg.getUsername(), p.getUser())){
                 
         %>
         <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a>
@@ -96,6 +97,7 @@ for (int i =0; i<lsPics.size(); i++ ){
         
         
         <%
+       }
        }
         
             }

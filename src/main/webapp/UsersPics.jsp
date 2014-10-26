@@ -70,6 +70,15 @@ for (int i =0; i<lsPics.size(); i++ ){
         
         <a href="/Instagrim/Delete/<%=p.getSUUID()%>" > Delete </a>
         <a href="/Instagrim/UpdateAvatar/<%=p.getSUUID()%>" > Update Avatar </a></br>
+            <form name="input" action="/Instagrim/Comment" method="post">
+                <input type="text" name="user" value="<%=lg.getUsername()%>" hidden>
+                <input type="text" name="picid" value="<%=p.getSUUID()%>" hidden>
+                <input type="text" name="comment">
+
+
+                <input type="submit" value="Comment">
+            </form>
+            </br>
        <% for(int j=0; j<comments.size();j++)
        {%>
         <a> <% out.println(comments.get(j)); %> </a></br>

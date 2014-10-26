@@ -78,7 +78,6 @@ public class PicModel {
             Date DateAdded = new Date();
             session.execute(bsInsertPic.bind(picid, buffer, thumbbuf,processedbuf, user, DateAdded, length,thumblength,processedlength, type, name));
             session.execute(bsInsertPicToUser.bind(picid, user, DateAdded, caption));
-             insertComment(user,"test comment",picid.toString());
             session.close();
 
         } catch (IOException ex) {

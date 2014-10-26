@@ -22,8 +22,8 @@
             <h1>InstaGrim ! </h1>
             <h2>Your world in Black and White</h2>
         </header>
-        <nav>
-            <ul>
+        
+            
 
 
                 
@@ -46,8 +46,7 @@
 
                                 
                     %>
-                    Random Pic</br>
-                                <a href="/Instagrim/Image/<%=pm.getRandom()%>" ><img src="/Instagrim/Thumb/<%=pm.getRandom()%>"></a>
+                  
                                 
                 <li><a href="upload.jsp">Upload</a></li>
 
@@ -67,7 +66,16 @@
 
 
                 <input type="submit" value="Follow">
-            </form>
+                </form></br>
+                Random Pics:</br>
+                <IMG HEIGHT=100 WIDTH=100 SRC="/Instagrim/Image/<%=pm.getRandom()%>" >                <IMG HEIGHT=100 WIDTH=100 SRC="/Instagrim/Image/<%=pm.getRandom()%>" >
+                <IMG HEIGHT=100 WIDTH=100 SRC="/Instagrim/Image/<%=pm.getRandom()%>" >
+                <IMG HEIGHT=100 WIDTH=100 SRC="/Instagrim/Image/<%=pm.getRandom()%>" >
+                <IMG HEIGHT=100 WIDTH=100 SRC="/Instagrim/Image/<%=pm.getRandom()%>" >
+
+
+
+
                     <%}
                             }else{
                                 %>
@@ -80,12 +88,14 @@
                             
                     }%>
             </ul>
-        </nav>
+        
         <footer>
-            <ul>
+            </br>
+            </br>
+            </br>
                 <li class="footer"><a href="/Instagrim">Home</a></li>
                 <li>&COPY; Alexander M</li>
-            </ul>
+            
         </footer>
     </body>
 </html>

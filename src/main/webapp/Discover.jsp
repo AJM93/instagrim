@@ -90,14 +90,14 @@ for (int i =0; i<lsPics.size(); i++ ){
 
                 <input type="submit" value="Follow">
             </form>
-                <a>Comments:</a></br>
+               
        <% 
        
        if (comments!=null) { 
        for(int j=0; j<comments.size();j++)
        {%>
-       <a href="/Instagrim/Images/<%=users.get(j) %>" > <% out.println(users.get(j));%> </a>
-        <a> <% out.println(comments.get(j)); %> </a></br>
+      <!-- <a href="/Instagrim/Images/<%=users.get(j) %>" > <% out.println(users.get(j));%> </a>
+        <a> <% out.println(comments.get(j)); %> </a></br>-->
         
         
         

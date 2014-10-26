@@ -53,6 +53,8 @@
         <%
             java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
             java.util.LinkedList<String> comments = new java.util.LinkedList<>();
+            java.util.LinkedList<String> users = new java.util.LinkedList<>();
+
             if (lsPics == null) {
         %>
         <p>No Pictures found</p>
@@ -62,6 +64,7 @@
 for (int i =0; i<lsPics.size(); i++ ){ 
              	Pic p = lsPics.get(i);
                 comments=pm.getComments(p.getSUUID());
+                users=pm.getUsers(p.getSUUID());
                 
         %>
         <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a>
@@ -79,9 +82,12 @@ for (int i =0; i<lsPics.size(); i++ ){
                 <input type="submit" value="Comment">
             </form>
             </br>
-       <% if (comments!=null) { 
+       <% 
+       
+       if (comments!=null) { 
        for(int j=0; j<comments.size();j++)
        {%>
+       <a href="/Instagrim/Images/<%=users.get(j) %>" > <% out.println(users.get(j));%> </a>
         <a> <% out.println(comments.get(j)); %> </a></br>
         
         

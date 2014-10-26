@@ -217,7 +217,7 @@ public class PicModel {
     public java.util.LinkedList<String> getComments(String picid){
         java.util.LinkedList<String> comments = new java.util.LinkedList<>();
         Session session = cluster.connect("instagrim");
-        PreparedStatement ps = session.prepare("select user,body from comments where picid=? ALLOW FILTERING");
+        PreparedStatement ps = session.prepare("select body from comments where picid=? ALLOW FILTERING");
         BoundStatement boundStatement = new BoundStatement(ps);
         ResultSet rs = null;
         rs = session.execute( // this is where the query is executed
@@ -229,13 +229,36 @@ public class PicModel {
         } else {
             for (Row row : rs) {
                 
-                comments.add(row.getString("user")+": "+row.getString("body"));
+                comments.add(row.getString("body"));
                 
 
             }
         }
         
         return comments;
+    }
+    public java.util.LinkedList<String> getUsers(String picid){
+        java.util.LinkedList<String> users = new java.util.LinkedList<>();
+        Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("select user from comments where picid=? ALLOW FILTERING");
+        BoundStatement boundStatement = new BoundStatement(ps);
+        ResultSet rs = null;
+        rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        picid));
+        if (rs.isExhausted()) {
+            System.out.println("No Images returned");
+            return null;
+        } else {
+            for (Row row : rs) {
+                
+                users.add(row.getString("user"));
+                
+
+            }
+        }
+        
+        return users;
     }
     
     

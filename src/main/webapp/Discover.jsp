@@ -65,7 +65,7 @@ for (int i =0; i<lsPics.size(); i++ ){
              	Pic p = lsPics.get(i);
                 comments=pm.getComments(p.getSUUID());
                 users=pm.getUsers(p.getSUUID());
-                if(us.doesFollow(lg.getUsername(), p.getUser())){
+                if(!us.doesFollow(lg.getUsername(), p.getUser())){
                 
         %>
         <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a>
@@ -96,8 +96,6 @@ for (int i =0; i<lsPics.size(); i++ ){
        if (comments!=null) { 
        for(int j=0; j<comments.size();j++)
        {%>
-               <IMG HEIGHT=25 WIDTH=25 SRC="/Instagrim/Image/<%=us.getPP(users.get(j))%>" >
-
        <a href="/Instagrim/Images/<%=users.get(j) %>" > <% out.println(users.get(j));%> </a>
         <a> <% out.println(comments.get(j)); %> </a></br>
         

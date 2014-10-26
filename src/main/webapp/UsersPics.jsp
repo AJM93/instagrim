@@ -32,12 +32,12 @@
                                  lg.setPP(us.getPP(lg.getUsername()));
 
         %>
-         <h1> <%  out.println(lg.getUsername()); %> </h1>                  <a href="/Instagrim/Image/<%=lg.getPP()%>" ><img src="/Instagrim/Thumb/<%=lg.getPP()%>"></a>
+        <!-- <h1> <%  out.println(lg.getUsername()); %> </h1>   -->              <!-- <a href="/Instagrim/Image/<%=lg.getPP()%>" ><img src="/Instagrim/Thumb/<%=lg.getPP()%>"></a> --->
 
 
 
-         <h1><a target="_blank" href="http://www.twitter.com/<%out.println(lg.getTwitter());%>">@<% out.println(lg.getTwitter()); %></a>  </h1>
-         <h2> "<% out.println(lg.getBio()); %>" </h2>
+         <!--<h1><a target="_blank" href="http://www.twitter.com/<%out.println(lg.getTwitter());%>">@<% out.println(lg.getTwitter()); %></a>  </h1>
+         <h2> "<% out.println(lg.getBio()); %>" </h2> -->
         </header>
         
         <nav>
@@ -69,11 +69,17 @@ for (int i =0; i<lsPics.size(); i++ ){
                 
         %>
         <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a>
-        <a href="/Instagrim/Images/<%=p.getUser()%>" > <% out.println(p.getUser());%> </a>
         <a><% out.println(p.getName());  %></a>
         
         <a href="/Instagrim/Delete/<%=p.getSUUID()%>" > Delete </a>
         <a href="/Instagrim/UpdateAvatar/<%=p.getSUUID()%>" > Update Avatar </a></br>
+        </br>
+        <IMG HEIGHT=50 WIDTH=50 SRC="/Instagrim/Image/<%=us.getPP(p.getUser())%>" >
+        <a href="/Instagrim/Images/<%=p.getUser()%>" > <% out.println(p.getUser());%> </a>
+        </br>
+        <a><% out.println("''"+us.getBio(p.getUser())+"''"); %></a>
+        </br>
+        
         
          
             <form name="input" action="/Instagrim/Comment" method="post">
@@ -84,7 +90,7 @@ for (int i =0; i<lsPics.size(); i++ ){
 
                 <input type="submit" value="Comment">
             </form>
-            </br>
+                <a>Comments:</a></br>
        <% 
        
        if (comments!=null) { 
@@ -98,6 +104,9 @@ for (int i =0; i<lsPics.size(); i++ ){
         
         <%
        }
+       %>
+       </br></br>
+       <%
        }
         
             }

@@ -81,6 +81,16 @@ public class User {
     }
     }
     
+    public void followUser(String user1, String user2){
+        Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("insert into follow (user,user1) Values(?,?)");
+        ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        user1,user2));
+    }
+    
     public boolean IsValidUser(String username, String Password){
         AeSimpleSHA1 sha1handler=  new AeSimpleSHA1();
         String EncodedPassword=null;

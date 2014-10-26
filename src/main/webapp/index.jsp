@@ -58,6 +58,13 @@
                                     
 
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
+                <form name="input" action="/Instagrim/Follow" method="post">
+                <input type="text" name="user" value="<%=lg.getUsername()%>" hidden>
+                <input type="text" name="user1">
+
+
+                <input type="submit" value="Follow">
+            </form>
                     <%}
                             }else{
                                 %>

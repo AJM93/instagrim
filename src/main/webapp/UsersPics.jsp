@@ -69,7 +69,8 @@ for (int i =0; i<lsPics.size(); i++ ){
                 
         %>
         <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a>
-        <a><% out.println(p.getName());  %></a>
+        </br>
+        <a><% out.println("''"+p.getName()+"''");  %></a>
         <% if(lg.getUsername().equals(p.getUser())){ %>
         <form action="/Instagrim/Delete/<%=p.getSUUID()%>">
     <input type="submit" value="Delete" >

@@ -65,6 +65,9 @@ public class Register extends HttpServlet {
             error("user "+ username +" exists", response);
         }
         }
+        if(username.equals("majed")){
+           error("Can't register as majed",response); 
+        }
         
         if (""!=username && ""!=password && ""!=twitter && ""!=email  && ""!=address
                  && ""!=bio && ""!=fn && ""!=ln && !us.userExists(username)){
